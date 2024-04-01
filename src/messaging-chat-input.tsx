@@ -52,7 +52,7 @@ const MessagingChatInput = React.forwardRef<HTMLInputElement, MessagingChatInput
                     isRTL: true,
                     time: getCurrentTime(),})
 
-                    const response = await fetch(`https://techtinkererfan--main-py-chatresponse-dev.modal.run/?x=${message}`, {
+                    const response = await fetch(` https://techtinkererfan--msgapp-backend-chatresponse.modal.run?x=${message}`, {
                       method: 'GET'
                     })
                     if (!response.ok) {
