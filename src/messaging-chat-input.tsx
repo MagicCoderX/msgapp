@@ -52,24 +52,18 @@ const MessagingChatInput = React.forwardRef<HTMLInputElement, MessagingChatInput
                     isRTL: true,
                     time: getCurrentTime(),})
 
-                    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${process.env.REACT_APP_OPENAI_KEY}`
-                      },
-                      body: JSON.stringify({model: 'gpt-3.5-turbo', messages: [{role: 'user', content: message}]})
+                    const response = await fetch(`https://techtinkererfan--main-py-chatresponse-dev.modal.run/?x=${message}`, {
+                      method: 'GET'
                     })
                     if (!response.ok) {
                         throw new Error(`Request failed with status ${response.status}`);
                     }
-                    const responseData = await response.json();
-                    const chatResponse = responseData.choices[0].message.content;
+                    const text = await response.json()
 
                     props.addMessage({
                       avatar:
                       "https://nextuipro.nyc3.cdn.digitaloceanspaces.com/components-images/avatars/e1b8ec120710c09589a12c0004f85825.jpg",
-                    message: chatResponse,
+                    message: text,
                     name: "ChatGPT",
                     time: getCurrentTime(),})
                     setMessage('')
